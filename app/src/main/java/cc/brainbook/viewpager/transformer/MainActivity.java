@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List<View> viewList = new ArrayList<>();
-        Field[] fields=R.drawable.class.getDeclaredFields();
+        Field[] fields = R.drawable.class.getDeclaredFields();
         try {
             for (Field field : fields) {
                 if (field.getName().startsWith("ic_test")) {
