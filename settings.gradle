@@ -1,1 +1,1 @@
-include ':app', ':viewpagertransformer'
+include ':viewpagertransformer', ':app'

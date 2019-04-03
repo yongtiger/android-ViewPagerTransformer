@@ -1,4 +1,4 @@
-package cc.brainbook.viewpager.transformer;
+package cc.brainbook.viewpager.transformer.app;
 
 import org.junit.Test;
 
