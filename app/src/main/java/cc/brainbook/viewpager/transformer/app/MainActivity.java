@@ -1,6 +1,8 @@
 package cc.brainbook.viewpager.transformer.app;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -331,8 +333,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setPageTransformer(false, transformer);
     }
 
-    class MyPagerAdapter extends PagerAdapter {
-        private List<View> viewList;
+    static class MyPagerAdapter extends PagerAdapter {
+        private final List<View> viewList;
 
         public MyPagerAdapter(List<View> viewList) {
             this.viewList = viewList;
@@ -344,18 +346,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;///https://developer.android.com/reference/android/support/v4/view/PagerAdapter.html
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        @NonNull
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             container.addView(viewList.get(position),0);///@param index the position at which to add the child or -1 to add last？？？？？0
             return viewList.get(position);
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             container.removeView(viewList.get(position));
         }
     }

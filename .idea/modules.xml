@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android-ViewPagerTransformer.iml" filepath="$PROJECT_DIR$/android-ViewPagerTransformer.iml" group="android-ViewPagerTransformer" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="android-ViewPagerTransformer/app" />
-      <module fileurl="file://$PROJECT_DIR$/viewpagertransformer/viewpagertransformer.iml" filepath="$PROJECT_DIR$/viewpagertransformer/viewpagertransformer.iml" group="android-ViewPagerTransformer/viewpagertransformer" />
+      <module fileurl="file://$PROJECT_DIR$/android-ViewPagerTransformer.iml" filepath="$PROJECT_DIR$/android-ViewPagerTransformer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-ViewPagerTransformer.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-ViewPagerTransformer.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/viewpagertransformer/android-ViewPagerTransformer.viewpagertransformer.iml" filepath="$PROJECT_DIR$/.idea/modules/viewpagertransformer/android-ViewPagerTransformer.viewpagertransformer.iml" />
     </modules>
   </component>
 </project>

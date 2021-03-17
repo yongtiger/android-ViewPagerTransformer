@@ -1,74 +1,37 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+}
 
 ///[jitpack#publish]https://jitpack.io/docs/ANDROID/
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.yongtiger'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 30
-        versionCode 20002
-        versionName "2.0.2"
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
+        versionCode release.versionCode
+        versionName release.versionName
 
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
-
-//----------------------jitpack-sources-javadoc-----------------------
-//https://jitpack.io/docs/#features
-//https://github.com/jitpack/android-example/blob/master/library/build.gradle
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-}
-
-// build a jar with source files
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    failOnError  false
-    source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.compile
-}
-
-// build a jar with javadoc
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
-// uncomment to build a jar file in addition to the default aar file
-//android.libraryVariants.all { variant ->
-//    def name = variant.buildType.name
-//    def task = project.tasks.create "jar${name.capitalize()}", Jar
-//    task.dependsOn variant.javaCompile
-//    task.from variant.javaCompile.destinationDir
-//    artifacts.add('archives', task);
-//}
