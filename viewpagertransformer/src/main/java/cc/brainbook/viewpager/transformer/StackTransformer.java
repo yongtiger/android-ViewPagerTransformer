@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
  * @time 2016/5/28 13:00
  */
 public class StackTransformer extends BaseTransformer {
-
 	/**
 	 * Called each {@link #transformPage(View, float)}.
 	 *

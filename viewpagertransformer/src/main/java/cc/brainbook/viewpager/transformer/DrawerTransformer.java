@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
  * @time 2016/5/28 13:00
  */
 public class DrawerTransformer extends BaseTransformer {
-
     /**
      * Called each {@link #transformPage(android.view.View, float)}.
      *

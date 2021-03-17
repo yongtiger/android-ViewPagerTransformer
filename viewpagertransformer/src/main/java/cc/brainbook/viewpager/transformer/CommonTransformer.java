@@ -36,7 +36,6 @@ import java.util.ArrayList;
  *
  */
 public class CommonTransformer extends BaseTransformer {
-
     protected ArrayList<Param> mParams = new ArrayList<Param>();
 
     /**

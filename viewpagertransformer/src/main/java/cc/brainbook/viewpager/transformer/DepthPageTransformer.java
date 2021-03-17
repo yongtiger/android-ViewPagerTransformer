@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
  * @time 2016/5/28 13:00
  */
 public class DepthPageTransformer extends BaseTransformer {
-
 	private static final float MIN_SCALE = 0.75f;
 
 	/**

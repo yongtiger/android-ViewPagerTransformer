@@ -14,7 +14,6 @@ import android.view.View;
  * @time 2016/5/28 13:00
  */
 public abstract class BaseTransformer implements ViewPager.PageTransformer {
-
     /**
      * The left and right excursions.
      */

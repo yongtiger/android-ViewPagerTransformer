@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
  * @time 2016/5/28 13:00
  */
 public class TabletTransformer extends BaseTransformer {
-
 	private static final Matrix OFFSET_MATRIX = new Matrix();
 	private static final Camera OFFSET_CAMERA = new Camera();
 	private static final float[] OFFSET_TEMP_FLOAT = new float[2];
