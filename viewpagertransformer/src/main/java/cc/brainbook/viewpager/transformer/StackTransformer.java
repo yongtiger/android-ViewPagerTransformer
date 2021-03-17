@@ -1,6 +1,9 @@
 package cc.brainbook.viewpager.transformer;
 
+import android.os.Build;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 /**
  * Class extends {@link BaseTransformer}.
@@ -13,7 +16,7 @@ import android.view.View;
 public class StackTransformer extends BaseTransformer {
 
 	/**
-	 * Called each {@link #transformPage(android.view.View, float)}.
+	 * Called each {@link #transformPage(View, float)}.
 	 *
 	 * @param page
 	 *            Apply the transformation to this page
@@ -22,12 +25,14 @@ public class StackTransformer extends BaseTransformer {
 	 *            center. 1 is one full page position to the right, and -1 is one page position to the left.
 	 */
 	@Override
-	protected void onTransform(View page, float position) {
+	protected void onTransform(@NonNull View page, float position) {
 		if (position > -1.0f - mExcursionLeft && position < 1.0f + 0) {
 			showOffscreenPages(page);
 
 			page.setTranslationX(position < 0 ? 0f : -page.getWidth() * position);
-			page.setZ(-position);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				page.setZ(-position);
+			}
 
 			if (null != mOnTransformListener) {
 				mOnTransformListener.onTransform(page, position);

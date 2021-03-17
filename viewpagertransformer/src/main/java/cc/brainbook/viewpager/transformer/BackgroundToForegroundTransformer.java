@@ -2,6 +2,8 @@ package cc.brainbook.viewpager.transformer;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 /**
  * Class extends {@link BaseTransformer}.
  *
@@ -22,7 +24,7 @@ public class BackgroundToForegroundTransformer extends BaseTransformer {
 	 *            center. 1 is one full page position to the right, and -1 is one page position to the left.
 	 */
 	@Override
-	protected void onTransform(View page, float position) {
+	protected void onTransform(@NonNull View page, float position) {
         ///Hides the off-screen pages caused by rapid slide
 		if (position > -1.0f - mExcursionLeft && position < 1.0f + mExcursionRight + 0.1) {
 			showOffscreenPages(page);

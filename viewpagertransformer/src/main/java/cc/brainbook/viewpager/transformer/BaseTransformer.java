@@ -1,5 +1,6 @@
 package cc.brainbook.viewpager.transformer;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 import android.view.View;
@@ -52,7 +53,7 @@ public abstract class BaseTransformer implements ViewPager.PageTransformer {
      *            center. 1 is one full page position to the right, and -1 is one page position to the left.
      */
     @Override
-    public void transformPage(View page, float position){
+    public void transformPage(@NonNull View page, float position){
         setExcursion(page);
         position -= mExcursionLeft; //counteract the default page's position to Zero
 
@@ -72,7 +73,7 @@ public abstract class BaseTransformer implements ViewPager.PageTransformer {
      *            Position of page relative to the current front-and-center position of the pager. 0 is front and
      *            center. 1 is one full page position to the right, and -1 is one page position to the left.
      */
-    protected abstract void onTransform(View page, float position);
+    protected abstract void onTransform(@NonNull View page, float position);
 
     /**
      * Sets the left and right excursions.
@@ -98,7 +99,7 @@ public abstract class BaseTransformer implements ViewPager.PageTransformer {
      *
      * @param page    Apply the transformation to this page
      */
-    public void setExcursion(View page) {
+    public void setExcursion(@NonNull View page) {
         ViewPager viewPager = (ViewPager) page.getParent();
         mExcursionLeft = (float) viewPager.getPaddingLeft() / page.getWidth();
         mExcursionRight = (float) viewPager.getPaddingRight() / page.getWidth();
@@ -110,7 +111,7 @@ public abstract class BaseTransformer implements ViewPager.PageTransformer {
      * @param viewPager
      * @return The left excursion
      */
-    public static float getExcursionLeft(ViewPager viewPager) {
+    public static float getExcursionLeft(@NonNull ViewPager viewPager) {
         return (float) viewPager.getPaddingLeft() / (viewPager.getMeasuredWidth() - viewPager.getPaddingLeft() - viewPager.getPaddingRight());
     }
 
@@ -120,7 +121,7 @@ public abstract class BaseTransformer implements ViewPager.PageTransformer {
      * @param viewPager
      * @return The right excursion
      */
-    public static float getExcursionRight(ViewPager viewPager) {
+    public static float getExcursionRight(@NonNull ViewPager viewPager) {
         return (float) viewPager.getPaddingRight() / (viewPager.getMeasuredWidth() - viewPager.getPaddingLeft() - viewPager.getPaddingRight());
     }
 
@@ -137,7 +138,7 @@ public abstract class BaseTransformer implements ViewPager.PageTransformer {
      *
      * @param page    Apply the transformation to this page
      */
-    public void hideOffscreenPages(View page) {
+    public void hideOffscreenPages(@NonNull View page) {
         page.setAlpha(0);
 //        page.setVisibility(View.INVISIBLE);
     }
@@ -147,7 +148,7 @@ public abstract class BaseTransformer implements ViewPager.PageTransformer {
      *
      * @param page    Apply the transformation to this page
      */
-    public void showOffscreenPages(View page) {
+    public void showOffscreenPages(@NonNull View page) {
         page.setAlpha(1);
 //        page.setVisibility(View.VISIBLE);
     }

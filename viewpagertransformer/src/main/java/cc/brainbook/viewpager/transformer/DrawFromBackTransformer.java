@@ -2,6 +2,8 @@ package cc.brainbook.viewpager.transformer;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 /**
  * Class extends {@link BaseTransformer}.
  *
@@ -22,7 +24,7 @@ public class DrawFromBackTransformer extends BaseTransformer {
      *            center. 1 is one full page position to the right, and -1 is one page position to the left.
      */
     @Override
-    protected void onTransform(View page, float position) {
+    protected void onTransform(@NonNull View page, float position) {
         if (position > -1.0f - 0 && position < 1.0f + 0) {
             showOffscreenPages(page);
 
@@ -49,7 +51,7 @@ public class DrawFromBackTransformer extends BaseTransformer {
                         page.setAlpha(1.0F);
                         page.setTranslationX((float) pageWidth * position);
                         v = (float) (0.3D - (double) position);
-                        v = v >= 0.25F ? 0.25F : v;
+                        v = Math.min(v, 0.25F);
                         float scaleFactor = 0.75F + v;
                         page.setScaleX(scaleFactor);
                         page.setScaleY(scaleFactor);

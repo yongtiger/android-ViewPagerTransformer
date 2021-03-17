@@ -1,6 +1,10 @@
 package cc.brainbook.viewpager.transformer;
 
+import android.os.Build;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 /**
@@ -41,7 +45,7 @@ public class CommonTransformer extends BaseTransformer {
      * @param params
      *            Two-dimensional array of transformer parameters.
      */
-    public CommonTransformer(String[][] params){
+    public CommonTransformer(@NonNull String[][] params){
         for (int i = 0; i < params.length; i++) {
             Param param = new Param();
             param.name = params[i][0];
@@ -72,7 +76,7 @@ public class CommonTransformer extends BaseTransformer {
      * @param param
      *            Object of transformer parameter class.
      */
-    protected float calculateFactor(float position, Param param) {
+    protected float calculateFactor(float position, @NonNull Param param) {
         final float b = (param.p1 == param.p2 || param.v1 == param.v2) ?
                 0 : (param.v2 - param.v1) / (param.p2 - param.p1);
         final float a = param.v1 - b * param.p1;
@@ -80,7 +84,7 @@ public class CommonTransformer extends BaseTransformer {
     }
 
     /**
-     * Called each {@link #transformPage(android.view.View, float)}.
+     * Called each {@link #transformPage(View, float)}.
      *
      * @param page
      *            Apply the transformation to this page
@@ -89,7 +93,7 @@ public class CommonTransformer extends BaseTransformer {
      *            center. 1 is one full page position to the right, and -1 is one page position to the left.
      */
     @Override
-    protected void onTransform(View page, float position) {
+    protected void onTransform(@NonNull View page, float position) {
 
         boolean isShowOffscreenPages = false;
 
@@ -136,7 +140,9 @@ public class CommonTransformer extends BaseTransformer {
                         page.setAlpha(calculateFactor(position, param));
                         break;
                     case "Z":
-                        page.setZ(calculateFactor(position, param));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            page.setZ(calculateFactor(position, param));
+                        }
                         break;
                 }
             }

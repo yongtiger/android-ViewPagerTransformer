@@ -4,6 +4,8 @@ import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 /**
  * Class extends {@link BaseTransformer}.
  *
@@ -28,7 +30,7 @@ public class TabletTransformer extends BaseTransformer {
 	 *            center. 1 is one full page position to the right, and -1 is one page position to the left.
 	 */
 	@Override
-	protected void onTransform(View page, float position) {
+	protected void onTransform(@NonNull View page, float position) {
 //		if (position > -1.0f - mExcursionLeft && position < 1.0f + mExcursionRight) {
 //			showOffscreenPages(page);
 
@@ -48,7 +50,7 @@ public class TabletTransformer extends BaseTransformer {
 //		}
 	}
 
-	protected static final float getOffsetXForRotation(float degrees, int width, int height) {
+	protected static float getOffsetXForRotation(float degrees, int width, int height) {
 		OFFSET_MATRIX.reset();
 		OFFSET_CAMERA.save();
 		OFFSET_CAMERA.rotateY(Math.abs(degrees));
