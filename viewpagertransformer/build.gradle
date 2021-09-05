@@ -1,5 +1,21 @@
 plugins {
     id 'com.android.library'
+
+    ///[FIX#jitpack#jcenter废弃#Please remove usages of `jcenter()` Maven repository from your build scripts and migrate your build to other Maven repositories.]
+    id 'maven-publish'
+}
+
+///[FIX#jitpack#jcenter废弃#Please remove usages of `jcenter()` Maven repository from your build scripts and migrate your build to other Maven repositories.]
+///https://www.shangmayuan.com/a/12c08d0e68c3421cb2d547ee.html
+///https://stackoverflow.com/questions/67599438/gradle-7-and-jitpack-io-runs-into-error-during-publish
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+            }
+        }
+    }
 }
 
 android {
@@ -9,8 +25,6 @@ android {
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
-        versionCode release.versionCode
-        versionName release.versionName
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -23,11 +37,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        ///[FIX#Jitpack#需要Java 11]在项目根目录添加文件jitpack.yml（jdk: - openjdk11）
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
 }
